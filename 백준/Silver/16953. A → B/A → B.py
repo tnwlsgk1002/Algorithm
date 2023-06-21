@@ -1,25 +1,24 @@
 import sys
-from collections import deque
 input = sys.stdin.readline
 
-def bfs():
-  queue = deque()
-  queue.append(a)
-  while queue:
-    x = queue.popleft()
-
-    for nx in [x * 2, int(str(x) + '1')]:
-      if nx < a or nx > b or graph.get(nx, -1) != -1:
-        continue
-      graph[nx] = graph[x] + 1
-      queue.append(nx)
-
-  if graph.get(b, -1) != -1:
-    return graph[b] + 1
-  return -1
-  
 a, b = map(int, input().split())
-graph = dict()
-graph[a] = 0
 
-print(bfs())
+answer = 1
+
+while True:
+  if a == b:
+    break
+  elif a > b:
+    answer = -1
+    break
+  elif b % 10 == 1:
+    b //= 10 # 1을 수의 가장 오른쪽에 추가한다. => 나머지가 1인지 확인한다.
+    answer += 1
+  elif b % 2 == 0:
+    b //= 2 # 2를 곱한다 -> b를 2로 나눈다.
+    answer += 1
+  else:
+    answer = -1
+    break
+
+print(answer)
