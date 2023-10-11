@@ -19,9 +19,10 @@ jobs: # 실제 실행될 내용
         python-version: "3.10" # 3.10버전 파이썬 사용
     - name: Install dependencies # 1) 스크립트에 필요한 dependency 설치
       run: |
-        sudo chown -R ubuntu:ubuntu ubuntu
         python -m pip install --upgrade pip
-        pip install python-leetcode 
+        pip install python-leetcode
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
     - name: Run update.py # 2) update.py 실행
       run: |
         python update.py
